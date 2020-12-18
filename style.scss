@@ -1,0 +1,114 @@
+$size:1vh;
+$white:#fff;
+$grayish:#334;
+$blue: blue;
+@mixin falling ($duration:10s) {
+    .flake {
+        width: $size;
+        height: $size;
+        //animation-duration: 20s;
+        animation-duration: $duration;
+    }
+
+    .flake {
+        width: $size;
+        height: $size;
+        background-image: radial-gradient($white 40%, transparent);
+        border-radius: 100%;
+        top: -$size;
+        position: absolute;
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count:  infinite;
+
+    @for $n from 1 through 100 {
+        &:nth-child(#{$n}) {
+            left: 1% * random(100);
+            animation-delay: 0.5s * random(40);
+        }
+    }
+    @keyframes fall {
+        from {
+            top: -$size;
+        }
+        to {
+            top: 100%;
+        }
+    }
+}
+}
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+}
+.snow-container-1 {
+    position:fixed;
+    //background-color: #fdf3;
+    width: 50vw;
+    height: 85vh;
+    top: 0;
+    left: 0;
+    @include falling;
+}
+.snow-container-2 {
+    position:fixed;
+    //background-color: #fef9;
+    width: 48vw;
+    height: 85vh;
+    top: 0;
+    right: 0;
+    @include falling;
+    }
+.snow-container-3 {
+    position:fixed;
+    //background-color:#fdf5;
+    width: 33vw;
+    height: 40vh;
+    top: 0;
+    right:35vh;
+    @include falling (15s);
+    }
+.snow-container-4 {
+    position:fixed;
+    //background-color:#fdf5 ;
+    width: 48vw;
+    height: 30vh;
+    top: 0;
+    left: 10vh;
+    @include falling;
+    }
+.snow-container-5 {
+    position:fixed;
+    //background-color:#fdf5;
+    width: 10vw;
+    height: 15vh;
+    top: 0;
+    left: 198vh;
+    @include falling (9s);
+    }
+    .distance- {
+        &sm {
+        .flake { width: $size;
+                height: $size;
+                //animation-duration: 20s; 
+                background-image: radial-gradient($white 40%, transparent);
+            }
+        }
+        &md {
+        .flake { width: $size * 0.7;
+                height: $size * 0.7;
+                //animation-duration: 20s * 2;
+                background-image: radial-gradient(lighten($blue, 40%) 40%, transparent); 
+                opacity: 0.6;
+            }
+        }
+        &lg {
+        .flake {  width: $size * 0.5;
+                height: $size * 0.5;
+                //animation-duration: 20s * 4;
+                background-image: radial-gradient(darken($white, 30%) 40%, transparent); 
+                opacity:0.6;
+            }
+        }
+    }
+
